@@ -8,10 +8,10 @@ ts.setup {
   incremental_selection = {
     enable = true,
     keymaps = {
-      init_selection = 'gnn',
-      node_incremental = 'grn',
-      scope_incremental = 'grc',
-      node_decremental = 'grm',
+      init_selection = '<CR>',
+      node_incremental = '<CR>',
+      scope_incremental = '<TAB>',
+      node_decremental = '<S-TAB>',
     },
   },
   -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
