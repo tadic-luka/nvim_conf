@@ -71,7 +71,11 @@ nvim_lsp.clangd.setup {
   on_init = function()
     vim.g.custom_status = "Started Clangd"
   end,
+  init_options = {
+    compilationDatabasePath = "build",
+  },
   autostart = false,
+  root_dir = util.root_pattern("CMakeLists.txt"),
 }
 
 extension = Filetype.detect(vim.api.nvim_buf_get_name(0), {})
@@ -89,12 +93,6 @@ if extension == "cpp" then
     on_exit = vim.schedule_wrap(function(j, return_code)
       if return_code ~= 0 then
 	vim.g.custom_status = "Unable to run cmake"
-        return
-      end
-      if Path:new(
-	      build_dir .. "/compile_commands.json"
-	 ):copy({destination = root .. "/compile_commands.json"}) == false then
-	vim.g.custom_status = "Unable to copy generated compile_comands"
         return
       end
       vim.cmd [[ :LspStart ]]
