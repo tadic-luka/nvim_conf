@@ -64,22 +64,6 @@ nvim_lsp.gopls.setup {
   capabilities = capabilities,
 }
 
---nvim_lsp.ccls.setup {
---  init_options = {
---    compilationDatabaseDirectory = "build",
---    index = {
---      index = 0,
---    },
---  },
---  capabilities = capabilities,
---  on_attach = on_attach,
---  single_file_support = true,
---  on_init = function()
---    vim.g.custom_status = "Started ccls"
---  end,
---  autostart = false,
---}
-
 nvim_lsp.clangd.setup {
   capabilities = capabilities,
   on_attach = on_attach,
