@@ -1,5 +1,7 @@
 # Neovim config
 
+This only works for neovim versions 0.5.0+
+
 ## setup
 [packer](https://github.com/wbthomason/packer.nvim) is used to install plugins.
 Packer installation on UNIX, needs to be done before starting neovim for the fist time:
