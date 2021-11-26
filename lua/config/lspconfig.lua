@@ -80,7 +80,7 @@ nvim_lsp.clangd.setup {
 
 extension = Filetype.detect(vim.api.nvim_buf_get_name(0), {})
 
-if extension == "cpp" then
+if extension == "cpp" or extension == "c" then
   local root = Path:new(vim.api.nvim_buf_get_name(0)):parent()
   local build_dir = root .. "/build"
   local cmake_job = Job:new({
