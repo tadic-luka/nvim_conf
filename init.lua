@@ -6,6 +6,7 @@ local set = vim.opt
 vim.g.mapleader = ','
 vim.g.maplocalleader = ','
 vim.g.python3_host_prog ='/bin/python3'
+vim.g.tex_flavor = 'latex'
 
 o.autoread = true
 o.termguicolors = true

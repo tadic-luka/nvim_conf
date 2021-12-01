@@ -53,6 +53,8 @@ nvim_lsp.pyright.setup {
   on_attach = on_attach,
 }
 
+require'lspconfig'.texlab.setup{}
+
 require('rust-tools').setup({
 	server = {
 		capabilities = capabilities,

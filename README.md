@@ -22,3 +22,6 @@ For cpp [clangd](https://clangd.llvm.org/) is used.
 For rust [rust-analyzer](https://github.com/rust-analyzer/rust-analyzer) is used.
 Setup for rust is enhanced using [rust-tools](https://github.com/simrat39/rust-tools.nvim). 
 
+For LaTeX [texlab](https://github.com/latex-lsp/texlab) is used.
+
+
