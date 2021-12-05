@@ -40,4 +40,7 @@ return require('packer').startup(function()
   -- rust
   use 'rust-lang/rust.vim'
   use 'simrat39/rust-tools.nvim'
+
+  -- notify
+  use 'rcarriga/nvim-notify'
 end)

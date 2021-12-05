@@ -4,6 +4,7 @@ local util = require 'lspconfig/util'
 local Path = require 'plenary.path'
 local Job = require 'plenary.job'
 local Filetype = require 'plenary.filetype'
+local notify = require 'notify'
 
 
 local on_attach = function(client, bufnr)
@@ -76,7 +77,7 @@ nvim_lsp.clangd.setup {
   on_attach = on_attach,
   single_file_support = true,
   on_init = function()
-    vim.g.custom_status = "Started Clangd"
+    notify("Started Clangd", "info")
   end,
   init_options = {
     compilationDatabasePath = "build",
@@ -95,11 +96,11 @@ if extension == "cpp" or extension == "c" then
     args = {"-DCMAKE_EXPORT_COMPILE_COMMANDS=1", "../"},
     cwd = build_dir,
     on_start = function()
-      vim.g.custom_status = "Starting cmake compile_commands"
+      notify("Starting cmake compile_commands", "info")
     end,
     on_exit = vim.schedule_wrap(function(j, return_code)
       if return_code ~= 0 then
-	vim.g.custom_status = "Unable to run cmake"
+        notify("Unable to run cmake", "warning")
         return
       end
       vim.cmd [[ :LspStart ]]
@@ -107,7 +108,7 @@ if extension == "cpp" or extension == "c" then
   })
   local cmake_lists_exists = Path:new(root .. "/CMakeLists.txt"):exists()
   if not cmake_lists_exists then
-    vim.g.custom_status = "CMakeLists.txt not found, not starting clangd"
+    notify("CMakeLists.txt not found, not starting clangd", "warning")
   elseif Path:new(build_dir):mkdir({ exists_ok = true, parents=true }) == true then
     cmake_job:start()
   else
