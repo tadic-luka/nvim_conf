@@ -10,8 +10,18 @@ return require('packer').startup(function()
 
   use {
     'nvim-telescope/telescope.nvim',
-    requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
+    requires = {
+      'nvim-lua/plenary.nvim',
+    }
   }
+
+  use {
+    'nvim-telescope/telescope-ui-select.nvim',
+    after = {
+      'nvim-telescope/telescope.nvim',
+    },
+  }
+
   use {'akinsho/bufferline.nvim', requires = 'kyazdani42/nvim-web-devicons'}
 
   use {
