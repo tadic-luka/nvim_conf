@@ -17,7 +17,7 @@ return require('packer').startup(function()
 
   use {
     'nvim-telescope/telescope-ui-select.nvim',
-    after = {
+    requires = {
       'nvim-telescope/telescope.nvim',
     },
   }
@@ -29,23 +29,26 @@ return require('packer').startup(function()
     requires = {'kyazdani42/nvim-web-devicons', opt = true}
   }
 
-  use({
-    'SirVer/ultisnips',
-    requires = 'honza/vim-snippets',
-    config = function()
-      vim.g.UltiSnipsRemoveSelectModeMappings = 0
-    end,
-  })
+  use {
+    'hrsh7th/nvim-cmp',
+    requires = {
+      {
+        'SirVer/ultisnips',
+         requires = 'honza/vim-snippets',
+         config = function()
+           vim.g.UltiSnipsRemoveSelectModeMappings = 0
+         end,
+      },
+      'quangnguyen30192/cmp-nvim-ultisnips',
+      'hrsh7th/cmp-nvim-lsp',
+      'hrsh7th/cmp-buffer',
+      'hrsh7th/cmp-path',
+      'hrsh7th/cmp-nvim-lua',
+      'ray-x/cmp-treesitter',
+      'kdheepak/cmp-latex-symbols'
+    }
+  }
 
-  use 'hrsh7th/nvim-cmp'
-  use 'hrsh7th/cmp-nvim-lsp'
-  use 'hrsh7th/cmp-buffer'
-  use 'hrsh7th/cmp-path'
-  use 'hrsh7th/cmp-nvim-lua'
-  use 'ray-x/cmp-treesitter'
-
-  -- latex
-  use 'kdheepak/cmp-latex-symbols'
 
   -- rust
   use 'rust-lang/rust.vim'
