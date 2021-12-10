@@ -4,29 +4,37 @@ return require('packer').startup(function()
   -- Packer manager itself
   use 'wbthomason/packer.nvim'
   use 'sainnhe/gruvbox-material'
-  use 'neovim/nvim-lspconfig'
+  use {
+    'neovim/nvim-lspconfig',
+    config = [[require('config.lspconfig')]]
+  }
 
-  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+  use {
+    'nvim-treesitter/nvim-treesitter',
+    run = ':TSUpdate',
+    config=[[require('config.treesitter')]]
+  }
 
   use {
     'nvim-telescope/telescope.nvim',
     requires = {
+      'nvim-lua/popup.nvim',
       'nvim-lua/plenary.nvim',
-    }
+      'nvim-telescope/telescope-ui-select.nvim',
+    },
+    config = [[require('config.telescope')]],
   }
 
   use {
-    'nvim-telescope/telescope-ui-select.nvim',
-    requires = {
-      'nvim-telescope/telescope.nvim',
-    },
+    'akinsho/bufferline.nvim',
+    requires = 'kyazdani42/nvim-web-devicons',
+    config = [[require('config.bufferline')]]
   }
-
-  use {'akinsho/bufferline.nvim', requires = 'kyazdani42/nvim-web-devicons'}
 
   use {
     'hoob3rt/lualine.nvim',
-    requires = {'kyazdani42/nvim-web-devicons', opt = true}
+    requires = {'kyazdani42/nvim-web-devicons', opt = true},
+    config = [[require('config.notify')]]
   }
 
   use {
@@ -41,12 +49,13 @@ return require('packer').startup(function()
       },
       'quangnguyen30192/cmp-nvim-ultisnips',
       'hrsh7th/cmp-nvim-lsp',
-      'hrsh7th/cmp-buffer',
-      'hrsh7th/cmp-path',
-      'hrsh7th/cmp-nvim-lua',
-      'ray-x/cmp-treesitter',
+      { 'hrsh7th/cmp-buffer', after = 'nvim-cmp' },
+      { 'hrsh7th/cmp-path', after = 'nvim-cmp' },
+      { 'hrsh7th/cmp-nvim-lua', after = 'nvim-cmp' },
+      { 'ray-x/cmp-treesitter', after = 'nvim-cmp' },
       'kdheepak/cmp-latex-symbols'
-    }
+    },
+    config = [[require('config.cmp')]],
   }
 
 
@@ -55,5 +64,8 @@ return require('packer').startup(function()
   use 'simrat39/rust-tools.nvim'
 
   -- notify
-  use 'rcarriga/nvim-notify'
+  use {
+    'rcarriga/nvim-notify',
+    config = [[require('config.notify')]]
+  }
 end)
