@@ -72,4 +72,9 @@ return require('packer').startup(function()
     'rcarriga/nvim-notify',
     config = [[require('config.notify')]]
   }
+
+  use {
+    'tadic-luka/osc52.nvim',
+    config = [[require('config.osc52')]]
+  }
 end)
