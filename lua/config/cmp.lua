@@ -1,6 +1,18 @@
 local cmp = require 'cmp'
 
 
+local function border(hl_name)
+   return {
+      { "╭", hl_name },
+      { "─", hl_name },
+      { "╮", hl_name },
+      { "│", hl_name },
+      { "╯", hl_name },
+      { "─", hl_name },
+      { "╰", hl_name },
+      { "│", hl_name },
+   }
+end
 
 local t = function(str)
     return vim.api.nvim_replace_termcodes(str, true, true, true)
@@ -14,6 +26,12 @@ cmp.setup({
   },
   window = {
     documentation = true,
+    completion = {
+      border = border "CmpBorder",
+    },
+    documentation = {
+      border = border "CmpDocBorder",
+    },
   },
   mapping = {
     ['<C-n>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
