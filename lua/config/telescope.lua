@@ -1,6 +1,9 @@
 local telescope = require 'telescope'
 
 telescope.setup {
+  defaults = {
+    prompt_prefix = "   ",
+  },
   extensions = {
    ["ui-select"] = {
      -- put Telescope for vim.ui.select under curos
