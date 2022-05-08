@@ -71,7 +71,6 @@ cmp.setup({
     { name = 'path' },
     { name = 'nvim_lua' },
     { name = 'latex_symbols' },
-    { name = 'latex_symbols' },
     { name = 'treesitter' },
   },
   completion = {
