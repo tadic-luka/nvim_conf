@@ -44,6 +44,7 @@ vim.fn.sign_define("DiagnosticSignHint", { text = "", texthl = "DiagnosticSig
 
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.documentationFormat = { "markdown", "plaintext" }
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
 nvim_lsp.pylsp.setup {
@@ -66,24 +67,27 @@ require('rust-tools').setup({
 	},
 })
 
+require("clangd_extensions").setup {
+	server = {
+		  capabilities = capabilities,
+		  on_attach = on_attach,
+		  single_file_support = true,
+		  on_init = function()
+		    vim.notify("Started Clangd", vim.log.levels.INFO)
+		  end,
+		  init_options = {
+		    compilationDatabasePath = "build",
+		  },
+		  autostart = false,
+		  root_dir = util.root_pattern("CMakeLists.txt"),
+	},
+}
+
 nvim_lsp.gopls.setup {
   cmd = {'/home/luka/go/bin/gopls'},
   capabilities = capabilities,
 }
 
-nvim_lsp.clangd.setup {
-  capabilities = capabilities,
-  on_attach = on_attach,
-  single_file_support = true,
-  on_init = function()
-    vim.notify("Started Clangd", vim.log.levels.INFO)
-  end,
-  init_options = {
-    compilationDatabasePath = "build",
-  },
-  autostart = false,
-  root_dir = util.root_pattern("CMakeLists.txt"),
-}
 
 extension = Filetype.detect(vim.api.nvim_buf_get_name(0), {})
 

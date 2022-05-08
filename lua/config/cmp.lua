@@ -1,4 +1,5 @@
 local cmp = require 'cmp'
+local luasnip = require 'luasnip'
 
 
 local function border(hl_name)
@@ -21,7 +22,7 @@ end
 cmp.setup({
   snippet = {
     expand = function(args)
-      vim.fn['UltiSnips#Anon'](args.body)
+      luasnip.lsp_expand(args.body)
     end
   },
   window = {
@@ -43,27 +44,29 @@ cmp.setup({
         i = cmp.mapping.abort(),
         c = cmp.mapping.close(),
     }),
-    ['<CR>'] = cmp.mapping.confirm({ select = true }),
-    ["<Tab>"] = cmp.mapping({
-            i = function(fallback)
-                if vim.fn["UltiSnips#CanJumpForwards"]() == 1 then
-                    vim.api.nvim_feedkeys(t("<Plug>(ultisnips_jump_forward)"), 'm', true)
-                else
-                    fallback()
-                end
-            end,
-            s = function(fallback)
-                if vim.fn["UltiSnips#CanJumpForwards"]() == 1 then
-                    vim.api.nvim_feedkeys(t("<Plug>(ultisnips_jump_forward)"), 'm', true)
-                else
-                    fallback()
-                end
-            end
-        }),
+    ['<CR>'] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
+    ["<Tab>"] = cmp.mapping(function(fallback)
+	    if luasnip.jumpable(1) then
+		    luasnip.jump(1)
+	    elseif cmp.visible() then
+		    cmp.select_next_item()
+	    else
+		    fallback()
+	    end
+    end, {"i", "s"}),
+    ["<S-Tab>"] = cmp.mapping(function(fallback)
+	    if luasnip.jumpable(-1) then
+		    luasnip.jump(-1)
+	    elseif cmp.visible() then
+		    cmp.select_prev_item()
+	    else
+		    fallback()
+	    end
+    end, {"i", "s"}),
   },
   sources = {
     { name = 'nvim_lsp' },
-    { name = 'ultisnips' },
+    { name = 'luasnip' },
     { name = 'buffer' },
     { name = 'path' },
     { name = 'nvim_lua' },
