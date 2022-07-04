@@ -28,6 +28,7 @@ return require('packer').startup(function()
       'nvim-telescope/telescope-ui-select.nvim',
     },
     config = [[require('config.telescope')]],
+    cmd = 'Telescope',
   }
 
   use {
