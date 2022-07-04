@@ -74,5 +74,7 @@ return require('packer').startup(function()
 
   use { 'p00f/clangd_extensions.nvim' }
   use { 'dstein64/vim-startuptime', cmd = 'StartupTime' }
+  use { "nathom/filetype.nvim", config = [[require('config.filetype')]] }
+
 
 end)

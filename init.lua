@@ -50,6 +50,8 @@ vim.api.nvim_exec(
   ]],
     false
 )
+vim.g.did_load_filetypes = 1
+
 
 require('keybindings')
 require('plugins')
