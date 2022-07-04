@@ -34,16 +34,11 @@ return require('packer').startup(function()
     cmd = 'Telescope',
   }
 
-  use {
-    'akinsho/bufferline.nvim',
-    requires = 'kyazdani42/nvim-web-devicons',
-    config = [[require('config.bufferline')]]
-  }
 
   use {
     'hoob3rt/lualine.nvim',
     requires = {'kyazdani42/nvim-web-devicons', opt = true},
-    config = [[require('config.notify')]]
+    config = [[require('config.lualine')]]
   }
 
   use {
