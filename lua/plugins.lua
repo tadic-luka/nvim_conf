@@ -12,6 +12,9 @@ return require('packer').startup(function()
   use {
     'neovim/nvim-lspconfig',
     config = [[require('config.lspconfig')]],
+    requires = {
+       'p00f/clangd_extensions.nvim'
+    },
     event = 'BufRead',
   }
 
@@ -72,7 +75,6 @@ return require('packer').startup(function()
     config = [[require('config.osc52')]]
   }
 
-  use { 'p00f/clangd_extensions.nvim' }
   use { 'dstein64/vim-startuptime', cmd = 'StartupTime' }
   use { "nathom/filetype.nvim", config = [[require('config.filetype')]] }
 
