@@ -54,13 +54,13 @@ return require('packer').startup(function()
          requires = 'rafamadriz/friendly-snippets',
          config = [[require('config.luasnip')]],
       },
-      'saadparwaiz1/cmp_luasnip',
       'hrsh7th/cmp-nvim-lsp',
+      { 'saadparwaiz1/cmp_luasnip', after = 'nvim-cmp' },
       { 'hrsh7th/cmp-buffer', after = 'nvim-cmp' },
       { 'hrsh7th/cmp-path', after = 'nvim-cmp' },
       { 'hrsh7th/cmp-nvim-lua', after = 'nvim-cmp' },
       { 'ray-x/cmp-treesitter', after = 'nvim-cmp' },
-      'kdheepak/cmp-latex-symbols'
+      { 'kdheepak/cmp-latex-symbols', after = 'nvim-cmp' },
     },
     config = [[require('config.cmp')]],
     event = 'InsertEnter *'
@@ -78,4 +78,6 @@ return require('packer').startup(function()
   }
 
   use { 'p00f/clangd_extensions.nvim' }
+  use { 'dstein64/vim-startuptime', cmd = 'StartupTime' }
+
 end)
