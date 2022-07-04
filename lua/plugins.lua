@@ -11,13 +11,16 @@ return require('packer').startup(function()
   }
   use {
     'neovim/nvim-lspconfig',
-    config = [[require('config.lspconfig')]]
+    config = [[require('config.lspconfig')]],
+    event = 'BufRead',
   }
 
   use {
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
-    config=[[require('config.treesitter')]]
+    config=[[require('config.treesitter')]],
+    event = { "BufRead", "BufNewFile" },
+
   }
 
   use {
@@ -60,6 +63,7 @@ return require('packer').startup(function()
       'kdheepak/cmp-latex-symbols'
     },
     config = [[require('config.cmp')]],
+    event = 'InsertEnter *'
   }
 
 
