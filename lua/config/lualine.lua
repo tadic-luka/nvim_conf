@@ -26,6 +26,7 @@ require'lualine'.setup {
   tabline = {
   lualine_a = { {
     'buffers',
+    show_filename_only = false,
     symbols = {
       modified = ' ●',      -- Text to show when the buffer is modified
       directory =  '',     -- Text to show when the buffer is a directory
