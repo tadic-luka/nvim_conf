@@ -3,7 +3,7 @@ vim.cmd [[packadd packer.nvim]]
 return require('packer').startup(function()
   -- Packer manager itself
   use 'wbthomason/packer.nvim'
-  use 'sainnhe/gruvbox-material'
+  use {"ellisonleao/gruvbox.nvim", config = [[require('config.colorscheme')]]}
   -- notify
   use {
     'rcarriga/nvim-notify',
