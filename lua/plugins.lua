@@ -1,6 +1,6 @@
 vim.cmd [[packadd packer.nvim]]
 
-return require('packer').startup(function()
+return require('packer').startup({function()
   -- Packer manager itself
   use 'wbthomason/packer.nvim'
   use {"ellisonleao/gruvbox.nvim", config = [[require('config.colorscheme')]]}
@@ -85,4 +85,10 @@ return require('packer').startup(function()
   use { "nathom/filetype.nvim", config = [[require('config.filetype')]] }
 
 
-end)
+end,
+  config = {
+    display = {
+      open_fn = require('packer.util').float,
+    }
+  }
+})
