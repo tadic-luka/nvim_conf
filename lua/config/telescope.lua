@@ -8,7 +8,11 @@ telescope.setup {
       i = {
         ["<C-j>"] = actions.move_selection_next,
         ["<C-k>"] = actions.move_selection_previous,
-      }
+        ['<C-w>'] = actions.delete_buffer,
+      },
+      n = {
+        ['x'] = actions.delete_buffer,
+      },
     },
   },
   extensions = {
