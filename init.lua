@@ -41,15 +41,6 @@ bo.smartindent = true
 set.undofile = true
 
 vim.opt.termguicolors = true
-vim.api.nvim_exec(
-  [[
-  augroup YankHighlight
-    autocmd!
-    autocmd TextYankPost * silent! lua vim.highlight.on_yank()
-  augroup end
-  ]],
-    false
-)
 vim.g.did_load_filetypes = 1
 
 
