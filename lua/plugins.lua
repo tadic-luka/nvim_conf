@@ -72,6 +72,7 @@ return require('packer').startup({function()
     requires = {
       'neovim/nvim-lspconfig',
     },
+    after = 'nvim-lspconfig',
     config = [[require('config.rust')]],
   }
 
