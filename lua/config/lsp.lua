@@ -36,7 +36,7 @@ capabilities.textDocument.completion.completionItem.documentationFormat = { "mar
 
 local ok, module = pcall(require, 'cmp_nvim_lsp')
 if ok then
-  capabilities = module.update_capabilities(capabilities)
+  capabilities = module.default_capabilities(capabilities)
 end
 M.capabilities = capabilities
 
